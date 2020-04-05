@@ -19,3 +19,15 @@ after_success:
     - docker push rogeriojma/multi-nginx
     - docker push rogeriojma/multi-server
     - docker push rogeriojma/multi-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "multi-docker"
+    env: "MultiDocker-env"
+    bucket: "elasticbeanstalk-us-east-2-165086348688"
+    bucket_path: "multi-docker"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
